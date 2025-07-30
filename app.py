@@ -1,5 +1,4 @@
 import streamlit as st
-import tensorflow as tf
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
@@ -22,7 +21,7 @@ st.markdown("""
 # Load model LSTM
 @st.cache_resource
 def load_lstm_model():
-    model = tf.keras.models.load_model('model/model.h5')
+    model = load_model('/model/model.h5')
     return model
 
 model = load_lstm_model()
