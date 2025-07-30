@@ -27,7 +27,7 @@ def load_lstm_model():
 model = load_lstm_model()
 
 # Sidebar untuk input parameter
-st.sidebar.markdown("### ⚙️ Parameter Prediksi")
+st.sidebar.markdown("### ⚙ Parameter Prediksi")
 
 # 1. Input tanggal target
 st.sidebar.markdown("#### 📅 Tanggal Target Prediksi")
@@ -62,14 +62,14 @@ window_option = st.sidebar.selectbox(
 )
 
 # Info tentang data availability
-st.sidebar.markdown("#### ℹ️ Info Data")
+st.sidebar.markdown("#### ℹ Info Data")
 st.sidebar.info("""
-**Catatan:**
+*Catatan:*
 - Yahoo Finance menyediakan data trading days
 - Hari libur dan weekend tidak termasuk
 - Untuk 90 hari, dibutuhkan ~130 hari kalender
 - Jika data kurang, gunakan opsi alternatif
-- **Prediksi maksimal 7 hari ke depan**
+- *Prediksi maksimal 7 hari ke depan*
 """)
 
 window_days = int(window_option[0])
@@ -77,7 +77,7 @@ window_days = int(window_option[0])
 # 3. Info data source
 st.sidebar.markdown("#### 📈 Sumber Data")
 st.sidebar.info("""
-**Data Source:**
+*Data Source:*
 - Yahoo Finance (GC=F)
 - Data real-time harga emas
 - Update otomatis setiap hari
@@ -135,7 +135,7 @@ with col1:
         
         # Validasi maksimal 7 hari
         if days_ahead > 7:
-            st.error("❌ **Error**: Prediksi maksimal hanya 7 hari ke depan!")
+            st.error("❌ *Error*: Prediksi maksimal hanya 7 hari ke depan!")
             st.stop()
         
         # Multi-step prediction untuk tanggal yang lebih jauh
@@ -168,7 +168,7 @@ with col1:
         
         # Tampilkan info multi-step prediction jika lebih dari 1 hari
         if days_ahead > 1:
-            st.info(f"📈 **Multi-step Prediction**: Model memprediksi {days_ahead} hari ke depan menggunakan rolling window approach")
+            st.info(f"📈 *Multi-step Prediction*: Model memprediksi {days_ahead} hari ke depan menggunakan rolling window approach")
         
         col_pred1, col_pred2, col_pred3 = st.columns(3)
         
@@ -302,7 +302,7 @@ with col1:
             
             st.dataframe(df_intermediate, use_container_width=True)
             
-            st.warning("⚠️ **Peringatan**: Prediksi multi-step untuk tanggal jauh mungkin kurang akurat karena error compounding. Semakin jauh tanggal prediksi, semakin besar kemungkinan deviasi dari nilai sebenarnya. Prediksi dioptimalkan untuk maksimal 7 hari ke depan.")
+            st.warning("⚠ *Peringatan*: Prediksi multi-step untuk tanggal jauh mungkin kurang akurat karena error compounding. Semakin jauh tanggal prediksi, semakin besar kemungkinan deviasi dari nilai sebenarnya. Prediksi dioptimalkan untuk maksimal 7 hari ke depan.")
         
     else:
         st.error(f"❌ Data tidak cukup! Hanya tersedia {len(data)} hari, dibutuhkan minimal {window_days} hari.")
@@ -314,7 +314,7 @@ with col1:
         available_days = len(data)
         
         if available_days >= 7:
-            st.info(f"💡 **Saran**: Gunakan {available_days} hari yang tersedia atau pilih window yang lebih kecil")
+            st.info(f"💡 *Saran*: Gunakan {available_days} hari yang tersedia atau pilih window yang lebih kecil")
             
             # Tampilkan data yang tersedia
             if available_days > 0:
@@ -406,22 +406,22 @@ with col1:
                     
                     st.plotly_chart(fig, use_container_width=True)
                     
-                    st.warning("⚠️ **Catatan**: Prediksi ini menggunakan data yang tersedia. Akurasi mungkin berbeda dari yang diharapkan.")
+                    st.warning("⚠ *Catatan*: Prediksi ini menggunakan data yang tersedia. Akurasi mungkin berbeda dari yang diharapkan.")
         
         else:
             st.error("❌ Data terlalu sedikit untuk melakukan prediksi yang akurat.")
-            st.info("💡 **Saran**: Pilih window yang lebih kecil atau coba lagi nanti.")
+            st.info("💡 *Saran*: Pilih window yang lebih kecil atau coba lagi nanti.")
 
 with col2:
     st.markdown("### 📋 Informasi Model")
     
     st.info("""
-    **Model LSTM yang digunakan:**
+    *Model LSTM yang digunakan:*
     - Arsitektur: Long Short-Term Memory
     - Input: 30 hari data historis
     - Output: Prediksi 1 hari ke depan
     - Metrik: Mean Squared Error (MSE)
-    - **Batasan**: Maksimal 7 hari prediksi ke depan
+    - *Batasan*: Maksimal 7 hari prediksi ke depan
     """)
     
     st.markdown("### 📊 Statistik")
@@ -434,9 +434,9 @@ with col2:
         st.metric("Maximum", f"${np.max(data_for_stats):,.2f}")
         st.metric("Volatilitas", f"{np.std(data_for_stats):,.2f}")
     
-    st.markdown("### ⚠️ Disclaimer")
+    st.markdown("### ⚠ Disclaimer")
     st.warning("""
-    **Peringatan:**
+    *Peringatan:*
     - Prediksi ini hanya untuk tujuan edukasi
     - Harga emas dipengaruhi banyak faktor
     - Tidak ada jaminan akurasi prediksi
