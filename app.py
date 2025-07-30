@@ -22,7 +22,7 @@ st.markdown("""
 # Load model LSTM
 @st.cache_resource
 def load_lstm_model():
-    model = tf.keras.models.load_model('model/model.h5')
+    model = tf.keras.models.load_model('model/model')
     return model
 
 model = load_lstm_model()
