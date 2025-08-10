@@ -21,7 +21,7 @@ st.markdown("""
 # Load model LSTM
 @st.cache_resource
 def load_lstm_model():
-    model = load_model('./model/model.h5')
+    model = load_model('./model.h5')
     return model
 
 model = load_lstm_model()
